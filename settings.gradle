@@ -1,1 +1,1 @@
-include ':app', ':cookiebar2'
+include  ':cookiebar2'

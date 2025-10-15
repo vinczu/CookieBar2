@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.dokka'
+//apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'maven-publish'
 
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 36
+    buildToolsVersion "36.0.0"
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 31
+        minSdkVersion 23
+        targetSdkVersion 36
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -19,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    namespace 'org.aviran.cookiebar2'
 }
 
 dependencies {
@@ -26,7 +32,8 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 }
 
 ext {
@@ -47,12 +54,7 @@ else {
         publishing {
             publications {
 
-                release(MavenPublication) {
-                    from components.release
-                    groupId = PUBLISH_GROUP_ID
-                    artifactId = PUBLISH_ARTIFACT_ID
-                    version = PUBLISH_GROUP_ID
-                }
+
             }
         }
     }
