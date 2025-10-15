@@ -50,7 +50,7 @@ public class CookieBar {
 
         cookieView = new Cookie(context);
         cookieView.setParams(params);
-        cookieView.setFitsSystemWindows(true);
+        //cookieView.setFitsSystemWindows(true);
     }
 
     private void show() {
